@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Movement : MonoBehaviour {
 
-    float speed = 5;
+    float speed = 1;
 
 	void Start () {
 	
@@ -11,20 +11,33 @@ public class Movement : MonoBehaviour {
 	
 	void Update () {
         Ray mousePos = Camera.main.ScreenPointToRay(Input.mousePosition);
-        Vector3 target = -(mousePos.origin + (mousePos.direction * (mousePos.origin.z / mousePos.direction.z)));
+        Vector3 target = 
+            (mousePos.origin + (mousePos.direction * (-mousePos.origin.z / mousePos.direction.z)));
            
         //mousePos.z = mousePos.y;
         //mousePos.y = 0;
 
         Vector3 distance = target - transform.position;
 
+        if (distance.magnitude < 0.1)
+            return;
+
+        Vector3 direction = distance.normalized;
+        
         Debug.DrawRay(mousePos.origin, mousePos.direction);
         Debug.DrawLine(mousePos.origin, target, Color.red);
 
-        transform.rotation.SetAxisAngle(new Vector3(0, 0, 1), Vector3.Angle(distance, new Vector3(0, 1, 0)));
-
+        float angle = Vector3.Angle(transform.up, direction);
+        Vector2 a = new Vector2(transform.up.x, transform.up.y);
+        Vector2 b = new Vector2(direction.x, direction.y);
+        if (Vector3.Cross(transform.up, direction).z < 0)
+        {
+            angle *= -1;
+        }
+        transform.RotateAroundLocal(Vector3.forward,  Mathf.Deg2Rad * angle);
+        
         Debug.DrawRay(transform.position, distance);
-        Vector3 move = distance.normalized * speed * Time.deltaTime;
+        Vector3 move = direction * speed * Time.deltaTime;
 
         transform.position += move;
 	}
