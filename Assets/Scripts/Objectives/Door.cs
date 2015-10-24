@@ -61,7 +61,6 @@ public class Door : MonoBehaviour {
 
     public void Open()
     {
-        Debug.Log("Open");
         closed = false;
         opening = true;
         closing = false;
@@ -69,7 +68,6 @@ public class Door : MonoBehaviour {
 
     public void Close()
     {
-        Debug.Log("Close");
         open = false;
         closing = true;
         opening = false;
@@ -81,8 +79,7 @@ public class Door : MonoBehaviour {
         {
             if (open)
                 return;
-
-            Debug.Log("Opening");
+            
             float deltaPos = openingSpeed * Time.deltaTime;
             left.localPosition -= new Vector3(deltaPos, 0, 0);
             right.localPosition -= new Vector3(-deltaPos, 0, 0);
@@ -98,8 +95,7 @@ public class Door : MonoBehaviour {
         {
             if (closed)
                 return;
-
-            Debug.Log("closing");
+            
             float deltaPos = openingSpeed * Time.deltaTime;
             left.localPosition += new Vector3(deltaPos, 0, 0);
             right.localPosition += new Vector3(-deltaPos, 0, 0);

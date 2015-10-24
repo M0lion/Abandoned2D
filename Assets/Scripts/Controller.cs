@@ -38,6 +38,7 @@ public class Controller : MonoBehaviour {
 
     public void addPlayer(Player movement)
     {
-        players.Add(movement);
+        if(!players.Contains(movement))
+            players.Add(movement);
     }
 }
