@@ -3,7 +3,9 @@ using System.Collections;
 
 public class Player: MonoBehaviour {
 
-    float speed = 5;
+    public Light light;
+
+    public float speed = 5;
 
     Rigidbody2D body;
 
@@ -60,10 +62,23 @@ public class Player: MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Player movement = collision.gameObject.GetComponent<Player>();
-        if(movement != null)
+        Player player = collision.gameObject.GetComponent<Player>();
+        if(player != null)
         {
-            GameObject.FindGameObjectWithTag("GameController").GetComponent<Controller>().addPlayer(movement);
+            GameObject.FindGameObjectWithTag("GameController").GetComponent<Controller>().addPlayer(player);
+            player.Enable();
         }
+    }
+
+    void Enable()
+    {
+        if(light != null)
+        {
+            light.enabled = true;
+        }
+
+        Material mat = GetComponent<MeshRenderer>().material;
+        mat.SetColor("_EmissionColor", Mathf.LinearToGammaSpace(1) * Color.red);
+
     }
 }
