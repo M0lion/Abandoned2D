@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent (typeof(Power))]
+
 public class Door : MonoBehaviour {
 
     public Transform left;
@@ -8,6 +10,8 @@ public class Door : MonoBehaviour {
 
     public Vector3 leftClosedPos;
     public Vector3 rightClosedPos;
+
+    Power power;
 
     bool open = false;
     bool closed = true;
@@ -24,20 +28,61 @@ public class Door : MonoBehaviour {
         openingSpeed = openingLength / openingTime;
         leftClosedPos = left.localPosition;
         rightClosedPos = right.localPosition;
+
+        power = GetComponent<Power>();
 	}
 	
 	void Update ()
     {
         if(Input.GetKeyDown(KeyCode.E))
         {
-            if (closed)
-                Open();
-            else if (open)
-                Close();
+            ToggleOpen();
         }
 
+        if(power.powered && !open)
+        {
+            Open();
+        }
+        else if(!power.powered && !closed)
+        {
+            Close();
+        }
+
+        UpdateDoors();
+    }
+
+    public void ToggleOpen()
+    {
+        if (closed || closing)
+            Open();
+        else if (open || opening)
+            Close();
+    }
+
+    public void Open()
+    {
+        Debug.Log("Open");
+        closed = false;
+        opening = true;
+        closing = false;
+    }
+
+    public void Close()
+    {
+        Debug.Log("Close");
+        open = false;
+        closing = true;
+        opening = false;
+    }
+
+    void UpdateDoors()
+    {
         if (opening)
         {
+            if (open)
+                return;
+
+            Debug.Log("Opening");
             float deltaPos = openingSpeed * Time.deltaTime;
             left.localPosition -= new Vector3(deltaPos, 0, 0);
             right.localPosition -= new Vector3(-deltaPos, 0, 0);
@@ -51,6 +96,10 @@ public class Door : MonoBehaviour {
         }
         if (closing)
         {
+            if (closed)
+                return;
+
+            Debug.Log("closing");
             float deltaPos = openingSpeed * Time.deltaTime;
             left.localPosition += new Vector3(deltaPos, 0, 0);
             right.localPosition += new Vector3(-deltaPos, 0, 0);
@@ -65,17 +114,5 @@ public class Door : MonoBehaviour {
                 right.localPosition = rightClosedPos;
             }
         }
-    }
-
-    public void Open()
-    {
-        closed = false;
-        opening = true;
-    }
-
-    public void Close()
-    {
-        open = false;
-        closing = true;
     }
 }
