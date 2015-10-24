@@ -5,7 +5,6 @@ public class ButtonPresser : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        Debug.Log("TriggerEnter");
         Button button = collider.gameObject.gameObject.GetComponent<Button>();
         if (button != null)
         {

@@ -78,7 +78,8 @@ public class Player: MonoBehaviour {
         }
 
         Material mat = GetComponent<MeshRenderer>().material;
-        mat.SetColor("_EmissionColor", Mathf.LinearToGammaSpace(1) * Color.red);
+        mat.SetColor("_EmissionColor", Mathf.LinearToGammaSpace(1) * mat.color);
+        mat.EnableKeyword("_EMISSION");
 
     }
 }
