@@ -4,6 +4,7 @@ using System.Collections.Generic;
 public class Triangle : MonoBehaviour {
 
     public MeshFilter meshFilter;
+    public PolygonCollider2D collider;
 
     Texture2D tex;
 
@@ -40,6 +41,14 @@ public class Triangle : MonoBehaviour {
         triangles.Add(2);
         //mesh.SetTriangles(triangles, 0);
         mesh.triangles = triangles.ToArray();
+
+        Vector2[] points = new Vector2[3];
+        for(int i = 0; i < 3; i++)
+        {
+            points[i].x = vertices[i].x;
+            points[i].y = vertices[i].y;
+        }
+        collider.points = points;
     }
 	
 	void Update () {

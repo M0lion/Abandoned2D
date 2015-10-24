@@ -5,8 +5,10 @@ public class Movement : MonoBehaviour {
 
     float speed = 4;
 
+    Rigidbody2D body;
+
 	void Start () {
-	
+        body = GetComponent<Rigidbody2D>();
 	}
 	
 	void Update () {
@@ -37,8 +39,8 @@ public class Movement : MonoBehaviour {
         transform.RotateAroundLocal(Vector3.forward,  Mathf.Deg2Rad * angle);
         
         Debug.DrawRay(transform.position, distance);
-        Vector3 move = direction * speed * Time.deltaTime;
-
-        transform.position += move;
+        Vector3 move = direction * Mathf.Min(speed, distance.magnitude) * Time.deltaTime;
+        
+        body.MovePosition(transform.position + move);
 	}
 }
