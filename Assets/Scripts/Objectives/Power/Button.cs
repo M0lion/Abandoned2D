@@ -14,9 +14,14 @@ public class Button : MonoBehaviour {
     public bool powered = false; 
 
     int buttonPressers = 0;
+
+	public AudioClip soundOn;
+	public AudioClip soundOff;
+	private AudioSource source;
     
 	void Start () {
         switchMeshes = active != null && inactive != null;
+		source = GetComponent<AudioSource> ();
 	}
 	
 	void Update () {
@@ -25,22 +30,26 @@ public class Button : MonoBehaviour {
             powered = true;
             target.power(true);
             SwitchMeshes();
+
         }
         else if(buttonPressers <= 0 && powered)
         {
             powered = false;
             target.power(false);
             SwitchMeshes();
+
         }
 	}
 
     void SwitchMeshes()
     {
         if(active != null)
+			source.PlayOneShot (soundOn);
             active.enabled = powered;
 
         if(inactive != null)
             inactive.enabled = !powered;
+			source.PlayOneShot (soundOff);
     }
 
     public void Press(int key)

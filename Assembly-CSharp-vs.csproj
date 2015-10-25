@@ -46,6 +46,12 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Clicking.cs" />
+     <Compile Include="Assets\Scripts\Animation\FadeIn.cs" />
+     <Compile Include="Assets\Scripts\Animation\FadeInOut.cs" />
+     <Compile Include="Assets\Scripts\Animation\FadeOut.cs" />
+     <Compile Include="Assets\Scripts\Animation\LevelLoader.cs" />
+     <Compile Include="Assets\Scripts\Animation\LightFlicker.cs" />
      <Compile Include="Assets\Scripts\Controller.cs" />
      <Compile Include="Assets\Scripts\Objectives\Door.cs" />
      <Compile Include="Assets\Scripts\Objectives\Forcefield.cs" />

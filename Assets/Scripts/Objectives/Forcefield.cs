@@ -9,9 +9,13 @@ public class Forcefield : MonoBehaviour {
     Collider2D collider;
     Power power;
 
+	public AudioClip sound;
+	private AudioSource source;
+
 	void Start () {
         power = GetComponent<Power>();
         collider = GetComponent<Collider2D>();
+		source = GetComponent<AudioSource> ();
 	}
 	
 	void Update () {

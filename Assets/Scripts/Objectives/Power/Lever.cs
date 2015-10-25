@@ -17,9 +17,13 @@ public class Lever : MonoBehaviour {
 
     public bool powered = false;
 
+	public AudioClip sound;
+	private AudioSource source;
+
     void Start()
     {
         switchMeshes = active != null && inactive != null;
+		source = GetComponent<AudioSource> ();
     }
 
     void Update()
@@ -57,6 +61,8 @@ public class Lever : MonoBehaviour {
         transform.Rotate(Vector3.up, 180);
         
         coolingDown = true;
+
+		source.PlayOneShot (sound);
     }
 
     void On()
