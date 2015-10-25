@@ -9,6 +9,8 @@ public class Forcefield : MonoBehaviour {
     Collider2D collider;
     Power power;
 
+    bool active = true;
+
 	public AudioClip sound;
 	private AudioSource source;
 
@@ -21,5 +23,11 @@ public class Forcefield : MonoBehaviour {
 	void Update () {
         forcefield.SetActive(!power.powered);
         collider.enabled = !power.powered;
+
+        if(active != !power.powered)
+        {
+            active = !active;
+            source.PlayOneShot(sound);
+        }
 	}
 }

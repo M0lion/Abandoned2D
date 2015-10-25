@@ -28,6 +28,7 @@ public class Controller : MonoBehaviour {
                 currentPlayer = 0;
             }
 
+            activePlayer.setTarget(activePlayer.transform.position);
             activePlayer = players[currentPlayer];
             camFollow.target = activePlayer.transform;
         }
