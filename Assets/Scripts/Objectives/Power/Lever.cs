@@ -3,6 +3,8 @@ using System.Collections;
 
 public class Lever : MonoBehaviour {
 
+    public int key = 0;
+
     public Power target;
 
     public MeshRenderer active;
@@ -42,9 +44,9 @@ public class Lever : MonoBehaviour {
             inactive.enabled = !powered;
     }
 
-    public void Flip()
+    public void Flip(int key)
     {
-        if (coolingDown)
+        if (coolingDown || this.key != key)
             return;
 
         if (powered)

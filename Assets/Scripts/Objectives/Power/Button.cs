@@ -9,6 +9,8 @@ public class Button : MonoBehaviour {
     public MeshRenderer inactive;
     bool switchMeshes;
 
+    public int key = 0;
+
     public bool powered = false; 
 
     int buttonPressers = 0;
@@ -41,13 +43,15 @@ public class Button : MonoBehaviour {
             inactive.enabled = !powered;
     }
 
-    public void Press()
+    public void Press(int key)
     {
-        buttonPressers++;
+        if(this.key == key)
+            buttonPressers++;
     }
 
-    public void Release()
+    public void Release(int key)
     {
-        buttonPressers--;
+        if (this.key == key)
+            buttonPressers--;
     }
 }
