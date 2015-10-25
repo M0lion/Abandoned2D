@@ -48,10 +48,13 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Controller.cs" />
      <Compile Include="Assets\Scripts\Objectives\Door.cs" />
+     <Compile Include="Assets\Scripts\Objectives\Forcefield.cs" />
      <Compile Include="Assets\Scripts\Objectives\Power\Button.cs" />
      <Compile Include="Assets\Scripts\Objectives\Power\Cable.cs" />
+     <Compile Include="Assets\Scripts\Objectives\Power\Lever.cs" />
      <Compile Include="Assets\Scripts\Objectives\Power\Power.cs" />
      <Compile Include="Assets\Scripts\Player\Abilities\ButtonPresser.cs" />
+     <Compile Include="Assets\Scripts\Player\Abilities\LeverPuller.cs" />
      <Compile Include="Assets\Scripts\Player\CameraFollow.cs" />
      <Compile Include="Assets\Scripts\Player\Player.cs" />
      <Compile Include="Assets\Scripts\Player\Triangle.cs" />
