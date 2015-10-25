@@ -57,6 +57,12 @@
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.Networking">
+      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
@@ -68,6 +74,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Clicking.cs" />
+    <Compile Include="Assets\Scripts\Animation\FadeIn.cs" />
+    <Compile Include="Assets\Scripts\Animation\FadeInOut.cs" />
+    <Compile Include="Assets\Scripts\Animation\FadeOut.cs" />
+    <Compile Include="Assets\Scripts\Animation\LevelLoader.cs" />
+    <Compile Include="Assets\Scripts\Animation\LightFlicker.cs" />
     <Compile Include="Assets\Scripts\Controller.cs" />
     <Compile Include="Assets\Scripts\Objectives\Door.cs" />
     <Compile Include="Assets\Scripts\Objectives\Forcefield.cs" />
